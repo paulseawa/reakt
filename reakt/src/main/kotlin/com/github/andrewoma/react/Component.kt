@@ -33,7 +33,7 @@ abstract class ComponentSpec<S:Any, P:Any> : ReactComponentSpec<S, P>(), Compone
  * The base Component type
  */
 open class Component(val transformer: (Component) -> Any) {
-    public val children: MutableList<Component> = java.util.ArrayList()
+    public val children: MutableList<Component> = arrayListOf()
 
     public fun constructAndInsert(component: Component, init: Component.() -> Unit = {}): Component {
         component.init()

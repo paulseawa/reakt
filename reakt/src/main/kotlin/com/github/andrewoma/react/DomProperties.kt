@@ -2,6 +2,7 @@ package com.github.andrewoma.react
 
 import org.w3c.dom.Window
 import org.w3c.dom.events.Event
+import kotlin.js.Date
 
 // TODO
 interface EventTarget {

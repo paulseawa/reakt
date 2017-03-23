@@ -32,6 +32,7 @@ interface ReactMixin<P, S> {
      *
      * @param nextProps the props object that the component will receive
      */
+    @JsName("componentWillReceiveProps")
     fun componentWillReceiveProps(nextProps: P): Unit {
     }
 
@@ -48,6 +49,7 @@ interface ReactMixin<P, S> {
      * @param nextProps the props object that the component will receive
      * @param nextState the state object that the component will receive
      */
+    @JsName("shouldComponentUpdate")
     fun shouldComponentUpdate(nextProps: P, nextState: S): Boolean {
         return true
     }
@@ -138,7 +140,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
      * If you need to interact with the browser, perform your work in componentDidMount() or the other lifecycle methods instead.
      * Keeping render() pure makes server rendering more practical and makes components easier to think about.
      */
-    abstract fun render(): ReactElement<P>?
+    abstract fun render():Any?
 
     // DefaultProps don't work very well as Kotlin set all the keys on an object and makes set versus null ambiguous
     // So prevent the usage.
@@ -156,8 +158,7 @@ abstract class ReactComponentSpec<P : Any, S : Any>() : ReactMixin<P, S> {
  * Component classses created by createClass() return instances of ReactComponent when called.
  * Most of the time when you're using React you're either creating or consuming these component objects.
  */
-@native
-interface ReactComponent<P, S> {
+external interface ReactComponent<P, S> {
 
     val refs: dynamic
 
@@ -204,7 +205,7 @@ interface ReactComponent<P, S> {
      * @param nextState the object that will be merged with the component's state
      * @param callback an optional callback function that is executed once setState is completed.
      */
-    fun setState(nextState: S, callback: () -> Unit = {}): Unit
+    fun setState(nextState: S, callback: () -> Unit = definedExternally): Unit
 
     /**
      * Like setState() but deletes any pre-existing state keys that are not in nextState.
@@ -228,11 +229,10 @@ interface ReactComponent<P, S> {
     fun forceUpdate(callback: () -> Unit): Unit
 }
 
-@native
-interface ReactComponentFactory<P : Any, S : Any> {
+
+external interface ReactComponentFactory<P : Any, S : Any> {
     operator fun invoke(properties: Ref<P>?, vararg children: Any?): ReactComponent<Ref<P>, Ref<S>>
 }
 
-@native
-interface ReactElement<P> {
+external interface ReactElement<P> {
 }

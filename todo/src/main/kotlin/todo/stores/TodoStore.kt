@@ -3,7 +3,8 @@ package todo.stores
 import com.github.andrewoma.flux.Dispatcher
 import com.github.andrewoma.flux.Store
 import todo.actions.*
-import java.util.LinkedHashMap
+import kotlin.js.Date
+import kotlin.js.Math
 
 data class Todo(
         val id: String,

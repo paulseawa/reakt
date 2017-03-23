@@ -35,8 +35,15 @@ public class Log(val logLevel: LogLevel) {
     }
 }
 
-@native("document.location.search")
-private val urlParameters: String = noImpl
+@JsName("document")
+external object Doc {
+    @JsName("location")
+    object Loc {
+        @JsName("search")
+        val urlParameters: String
+    }
+}
+
 
 private fun logLevelFromLocation(location: String): LogLevel {
     // Doesn't seem to be regex support for capturing groups, so hack away
@@ -47,4 +54,4 @@ private fun logLevelFromLocation(location: String): LogLevel {
     return LogLevel.none
 }
 
-public val log: Log = Log(logLevelFromLocation(urlParameters))
+public val log: Log = Log(logLevelFromLocation(Doc.Loc.urlParameters))

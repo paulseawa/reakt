@@ -36,11 +36,11 @@ Reakt.createClass = function (spec) {
     }
 
     reactComponentSpec.componentWillReceiveProps = function (nextProps) {
-        return this.kotlinComponent.componentWillReceiveProps_za3rmp$(refValue(nextProps));
+        return this.kotlinComponent.componentWillReceiveProps(refValue(nextProps));
     };
 
     reactComponentSpec.shouldComponentUpdate = function (nextProps, nextState) {
-        return this.kotlinComponent.shouldComponentUpdate_wn2jw4$(refValue(nextProps), refValue(nextState));
+        return this.kotlinComponent.shouldComponentUpdate(refValue(nextProps), refValue(nextState));
     };
 
     reactComponentSpec.componentWillUnmount = function () {
